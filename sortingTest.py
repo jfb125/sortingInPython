@@ -3,7 +3,7 @@ from bubbleSort import BubbleSort
 from mergeSort import MergeSort
 from quickSort import QuickSort
 from testVectorGenerator import *
-
+from heapSort import HeapSort
 
 sorted_correctly = -1           # return value
 random_test_cases = list()      # a list of randomly ordered lists
@@ -97,7 +97,7 @@ def test_sort(sorting_function: types.FunctionType, algorithm_name=""):
         if not is_sorted(test_case, compare_ints):
             error_count += 1
             print(" !!!!! ERROR !!!!! sort with ", algorithm_name, " failed:")
-            print(" Before", random_test_cases[i])
+            print(" Before", random_test_cases[j])
             print(" After ", test_case)
 
     # Test that are affected by whether a sort is adaptive or not
@@ -115,7 +115,7 @@ def test_sort(sorting_function: types.FunctionType, algorithm_name=""):
         if not is_sorted(test_case, compare_ints):
             error_count += 1
             print(" !!!!! ERROR !!!!! sort with ", algorithm_name, " failed:")
-            print(" Before", all_possible_lists[i])
+            print(" Before", all_possible_lists[j])
             print(" After ", test_case)
 
     return error_count
@@ -153,10 +153,12 @@ if __name__ == '__main__':
     merge_sort_error_count = test_sort(MergeSort.sort, "merge sort")
     quick_sort_2w_error_count = test_sort(QuickSort.sort, "quick sort with 2-way partitioning")
     quick_sort_3w_error_count = test_sort(QuickSort.sortThreeWay, "quick sort with 3-way partitioning")
+    heap_sort_error_count = test_sort(HeapSort.sort, "heap sort")
     built_in_sort_error_count = test_sort(None, "Built in sorting algorithm")
 
-    print("bubble sort test completed wth ", bubble_sort_error_count," errors")
+    print("bubble sort test completed with ", bubble_sort_error_count," errors")
     print("merge sort test completed with ", merge_sort_error_count, " errors")
     print("quick sort 2 way partitioning test completed with ", quick_sort_2w_error_count, " errors")
     print("quick sort 3 way partitioning test completed with ", quick_sort_3w_error_count, " errors")
+    print("heap sort test completed with ", heap_sort_error_count, " errors")
     print("built in sorting algorithm completed with ", built_in_sort_error_count, " errors")
